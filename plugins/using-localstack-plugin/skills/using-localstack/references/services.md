@@ -322,6 +322,133 @@ awslocal rds create-db-instance \
   --allocated-storage 20
 ```
 
+## CloudWatch Logs (Community/Pro)
+
+### Log Group & Stream Management
+```bash
+# Create log group manually
+awslocal logs create-log-group --log-group-name /custom/application
+
+# List all log groups
+awslocal logs describe-log-groups | jq '.logGroups[].logGroupName'
+
+# List streams in a log group
+awslocal logs describe-log-streams \
+  --log-group-name /aws/lambda/my-function | jq '.logStreams[].logStreamName'
+
+# Delete old log group
+awslocal logs delete-log-group --log-group-name /custom/old-app
+```
+
+### Tailing Logs (Live Tail)
+```bash
+# Tail Lambda logs (follows new entries in real-time)
+awslocal logs tail /aws/lambda/data-processor --follow
+
+# Tail with timestamp filter (last 10 minutes)
+awslocal logs tail /aws/lambda/data-processor \
+  --since 10m \
+  --follow
+
+# Tail specific number of lines
+awslocal logs tail /aws/lambda/data-processor --follow --max-items 50
+```
+
+**Live Tail vs Regular Tail:**
+- `--follow`: Real-time streaming (like `tail -f`), waits for new log events
+- Without `--follow`: Retrieves existing logs up to current time, then exits
+
+### Log Filtering
+```bash
+# Filter logs by pattern
+awslocal logs filter-log-events \
+  --log-group-name /aws/lambda/data-processor \
+  --filter-pattern "ERROR"
+
+# Filter with time range (Unix timestamps)
+awslocal logs filter-log-events \
+  --log-group-name /aws/lambda/data-processor \
+  --start-time 1609459200000 \
+  --end-time 1609545600000 \
+  --filter-pattern "timeout"
+
+# JSON-based filtering (extracts structured logs)
+awslocal logs filter-log-events \
+  --log-group-name /aws/lambda/data-processor \
+  --filter-pattern '{ $.statusCode = 500 }'
+```
+
+### Multi-Log-Group Monitoring
+```bash
+# Tail multiple Lambda functions simultaneously (separate terminals)
+awslocal logs tail /aws/lambda/function-a --follow &
+awslocal logs tail /aws/lambda/function-b --follow &
+wait
+
+# Or use shell script for parallel tailing
+for func in function-a function-b function-c; do
+  awslocal logs tail /aws/lambda/$func --follow | sed "s/^/[$func] /" &
+done
+wait
+```
+
+### Automatic Log Group Creation
+Lambda and Fargate can auto-create log groups when properly configured:
+
+**Lambda:** Automatically creates `/aws/lambda/<function-name>` on first invocation.
+
+**Fargate Task Definition:**
+```json
+{
+  "logConfiguration": {
+    "logDriver": "awslogs",
+    "options": {
+      "awslogs-group": "/ecs/fargate-backend",
+      "awslogs-region": "us-east-1",
+      "awslogs-stream-prefix": "ecs",
+      "awslogs-create-group": "true"
+    }
+  }
+}
+```
+
+**Verify:** Check logs immediately after task starts:
+```bash
+awslocal logs tail /ecs/fargate-backend --follow
+```
+
+### Debugging Tips
+```bash
+# Check if log group exists before tailing
+awslocal logs describe-log-groups \
+  --log-group-name-prefix /aws/lambda/my-function
+
+# If empty, function hasn't been invoked yet or logging is misconfigured
+
+# Force Lambda invocation to generate logs
+awslocal lambda invoke \
+  --function-name my-function \
+  --payload '{"test": true}' \
+  /tmp/response.json
+
+# Then tail logs
+awslocal logs tail /aws/lambda/my-function
+```
+
+### Retention Policies
+```bash
+# Set retention period (days: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653)
+awslocal logs put-retention-policy \
+  --log-group-name /aws/lambda/data-processor \
+  --retention-in-days 7
+
+# Remove retention (logs never expire)
+awslocal logs delete-retention-policy \
+  --log-group-name /aws/lambda/data-processor
+```
+
+---
+
 ## Step Functions (Pro only)
 
 ### Standard Workflow

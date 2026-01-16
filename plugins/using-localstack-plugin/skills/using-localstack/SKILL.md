@@ -69,12 +69,20 @@ Use Pro when avoiding deploy-to-test cycles outweighs license cost.
 
 ## Detailed Guides
 - [Setup & Configuration](references/setup.md) - Installation, runtime tuning, persistence, ports, resource allocation
-- [Service Workflows](references/services.md) - S3, Lambda, DynamoDB, EventBridge, MSK, EKS, RDS, Step Functions
+- [Service Workflows](references/services.md) - S3, Lambda, DynamoDB, EventBridge, MSK, EKS, RDS, Step Functions, CloudWatch
+- [Docker-Based Lambda & Fargate](references/docker-lambda-fargate.md) - Container images, ECR, Lambda packaging, Fargate orchestration, networking
+- [Docker Desktop Troubleshooting](references/docker-desktop-troubleshooting.md) - Diagnostic flowchart for networking, compute, persistence, IAM, and performance issues
 - [IaC Deployment](references/iac.md) - Terraform, CDK, CloudFormation patterns and toolchain setup
 - [State & Seeding](references/state.md) - Persistence, Cloud Pods, init hooks, parallel environments
 - [Debugging & Observability](references/debugging.md) - Logs, health checks, failure injection, networking
 - [CI/CD Patterns](references/ci-cd.md) - Container-based integration testing
 - [Sharp Edges](references/sharp-edges.md) - Limits, gotchas, AWS parity gaps
+
+## Examples & Scripts
+- [End-to-End Examples](examples/README.md) - Complete workflows, helper scripts, integration tests
+- [docker-compose.yml](examples/docker-compose.yml) - Production-grade LocalStack configuration
+- [e2e-lambda-fargate-s3.sh](examples/e2e-lambda-fargate-s3.sh) - Full Lambda + Fargate + S3 workflow
+- [ecr-helper.sh](examples/ecr-helper.sh) - ECR repository and image management utility
 
 ## Official References
 - Overview: https://docs.localstack.cloud/overview/
