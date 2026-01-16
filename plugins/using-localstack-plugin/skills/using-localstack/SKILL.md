@@ -72,6 +72,7 @@ Use Pro when avoiding deploy-to-test cycles outweighs license cost.
 - [Service Workflows](references/services.md) - S3, Lambda, DynamoDB, EventBridge, MSK, EKS, RDS, Step Functions, CloudWatch
 - [Docker-Based Lambda & Fargate](references/docker-lambda-fargate.md) - Container images, ECR, Lambda packaging, Fargate orchestration, networking
 - [Docker Desktop Troubleshooting](references/docker-desktop-troubleshooting.md) - Diagnostic flowchart for networking, compute, persistence, IAM, and performance issues
+- [Rancher Desktop Troubleshooting](references/rancher-desktop-troubleshooting.md) - Lima/WSL2 virtualization, containerd vs Moby, socket interfaces, VZ/VirtioFS optimization
 - [IaC Deployment](references/iac.md) - Terraform, CDK, CloudFormation patterns and toolchain setup
 - [State & Seeding](references/state.md) - Persistence, Cloud Pods, init hooks, parallel environments
 - [Debugging & Observability](references/debugging.md) - Logs, health checks, failure injection, networking
