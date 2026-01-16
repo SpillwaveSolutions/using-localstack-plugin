@@ -1,0 +1,10 @@
+{
+  "name": "using-localstack-plugin",
+  "description": "Build, test, and debug AWS-native systems locally with LocalStack (Community/Pro) using awslocal, IaC toolchains, event-driven pipelines, and observability.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Richard Hightower",
+    "email": "rick@spillwave.com"
+  },
+  "license": "MIT"
+}

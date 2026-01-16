@@ -1,0 +1,30 @@
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node/JS
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# IaC/Tooling
+.terraform/
+.terraform.lock.hcl
+.aws-sam/
+.serverless/
+
+# Env/Secrets
+.env
+.env.*
+*.pem
+
+# LocalStack state (override if you want persistence committed)
+ls_state/

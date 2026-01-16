@@ -1,0 +1,31 @@
+{
+  "name": "using-localstack-plugin",
+  "owner": {
+    "name": "Richard Hightower",
+    "email": "rick@spillwave.com"
+  },
+  "metadata": {
+    "description": "Build, test, and debug AWS-native systems locally with LocalStack (Community/Pro) using awslocal, IaC toolchains, event-driven pipelines, and observability; includes setup, deployment, management, monitoring, and sharp-edge guidance.",
+    "version": "1.0.0",
+    "license": "MIT"
+  },
+  "plugins": [
+    {
+      "name": "using-localstack",
+      "description": "Build, test, and debug AWS-native systems locally with LocalStack (Community/Pro) using awslocal, IaC toolchains, event-driven pipelines, and observability; includes setup, deployment, management, monitoring, and sharp-edge guidance.",
+      "source": "./plugins/using-localstack-plugin",
+      "strict": false,
+      "skills": [
+        "./plugins/using-localstack-plugin/skills/using-localstack"
+      ],
+      "commands": [
+        "./plugins/using-localstack-plugin/commands/awslocal-smoke.md",
+        "./plugins/using-localstack-plugin/commands/localstack-ci-plan.md"
+      ],
+      "agents": [
+        "./plugins/using-localstack-plugin/agents/localstack-keyword-watcher.md",
+        "./plugins/using-localstack-plugin/agents/localstack-ci-signal.md"
+      ]
+    }
+  ]
+}
