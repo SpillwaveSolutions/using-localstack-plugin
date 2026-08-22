@@ -1,0 +1,19 @@
+version: 1
+project:
+  key: LS
+  name: "using-localstack"
+ticketing:
+  system: github
+  project: SpillwaveSolutions/using-localstack-plugin
+wiki:
+  system: github-wiki
+  root_url: https://github.com/SpillwaveSolutions/using-localstack-plugin/wiki
+paths:
+  plans: docs/plans
+  status: docs/status
+  roadmap: docs/roadmap.md
+status:
+  default_kind: daily
+  week_starts: monday
+  publish: true
+installed: 0.24.4

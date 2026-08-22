@@ -1,0 +1,16 @@
+{
+  "name": "using-localstack-marketplace",
+  "version": "1.1.0",
+  "plugins": [
+    {
+      "name": "using-localstack",
+      "source": "./plugins/using-localstack-plugin",
+      "description": "Build, test, and debug AWS-native systems locally with LocalStack (Community/Pro).",
+      "version": "1.1.0",
+      "compatibility": {
+        "claude_plugin": true,
+        "zero_config": true
+      }
+    }
+  ]
+}

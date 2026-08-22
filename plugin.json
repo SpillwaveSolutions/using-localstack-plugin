@@ -1,0 +1,23 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "using-localstack",
+  "version": "1.1.0",
+  "description": "Build, test, and debug AWS-native systems locally with LocalStack (Community/Pro).",
+  "author": {
+    "name": "Rick Hightower",
+    "url": "https://github.com/RichardHightower"
+  },
+  "homepage": "https://github.com/SpillwaveSolutions/using-localstack-plugin",
+  "repository": "https://github.com/SpillwaveSolutions/using-localstack-plugin",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "grok-build",
+    "codex",
+    "cursor",
+    "agent-plugins",
+    "worklog",
+    "wiki-ticket-sdd"
+  ],
+  "skills": "./plugins/using-localstack-plugin/skills/"
+}

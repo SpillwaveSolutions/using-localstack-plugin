@@ -1,0 +1,17 @@
+{
+  "name": "using-localstack-marketplace",
+  "description": "Grok marketplace pin. Grok Build also loads Claude plugins zero-config.",
+  "version": "1.1.0",
+  "plugins": [
+    {
+      "name": "using-localstack",
+      "source": ".",
+      "description": "Build, test, and debug AWS-native systems locally with LocalStack (Community/Pro).",
+      "version": "1.1.0",
+      "compatibility": {
+        "claude_plugin": true,
+        "zero_config": true
+      }
+    }
+  ]
+}
